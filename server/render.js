@@ -62,14 +62,10 @@ export default (req, res) => {
             res.redirect(context.url)
             return res.end()
         }
-
-        modules.push('language_pt_br')
-
+        
         const extraChunks = extractAssets(manifest, modules).map(
             c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
         );
-
-        console.log(extraChunks)
 
         const helmet = Helmet.renderStatic();
         const htmlAttrs = helmet.htmlAttributes.toString();
