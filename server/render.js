@@ -9,6 +9,7 @@ import { Provider } from "react-redux"
 import { Frontload, frontloadServerRender } from 'react-frontload'
 import configureStore from "../src/store"
 import App from '../src/app.js'
+import { getData } from '../src/language'
 import manifest from '../build/asset-manifest.json'
 const injectHTML = (data, { htmlAttrs, bodyAttrs, content, title, meta, link, scripts, state }) => {
     if(htmlAttrs)
@@ -61,9 +62,15 @@ export default (req, res) => {
             res.redirect(context.url)
             return res.end()
         }
+
+        modules.push('language_pt_br')
+
         const extraChunks = extractAssets(manifest, modules).map(
             c => `<script type="text/javascript" src="/${c.replace(/^\//, '')}"></script>`
         );
+
+        console.log(extraChunks)
+
         const helmet = Helmet.renderStatic();
         const htmlAttrs = helmet.htmlAttributes.toString();
         const bodyAttrs = helmet.bodyAttributes.toString();
