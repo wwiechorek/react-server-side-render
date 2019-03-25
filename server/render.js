@@ -9,7 +9,6 @@ import { Provider } from "react-redux"
 import { Frontload, frontloadServerRender } from 'react-frontload'
 import configureStore from "../src/store"
 import App from '../src/app.js'
-import { getData } from '../src/language'
 import manifest from '../build/asset-manifest.json'
 const injectHTML = (data, { htmlAttrs, bodyAttrs, content, title, meta, link, scripts, state }) => {
     if(htmlAttrs)
